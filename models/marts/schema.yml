@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: usdn_circulating_supply
+    description: >
+      Daily USDN circulating supply with mint/burn/yield breakdown.
+      Incremental model updated daily.
+    columns:
+      - name: date
+        description: Date (UTC)
+        tests:
+          - unique
+          - not_null
+      - name: daily_minted
+        description: USDN minted on this date
+      - name: daily_burned
+        description: USDN burned on this date
+      - name: daily_yield
+        description: USDN yield accrued on this date
+      - name: daily_net_flow
+        description: Net change (minted + yield - burned)
+      - name: total_circulating
+        description: Cumulative USDN circulating supply
+
+  - name: usdc_circulating_supply
+    description: >
+      Current USDC circulating supply on Noble.
+      Simple aggregate of all-time mints minus burns.
+    columns:
+      - name: updated_at
+        description: Timestamp when this was last calculated
+        tests:
+          - not_null
+      - name: total_minted
+        description: All-time USDC minted
+      - name: total_burned
+        description: All-time USDC burned
+      - name: circulating_supply
+        description: Current USDC outstanding (minted - burned)

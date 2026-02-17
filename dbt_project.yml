@@ -38,3 +38,6 @@ models:
         transaction: true
       - sql: "{{ vacuum_table(this, model.config.materialized) }}"
         transaction: true
+
+vars:
+  usdn_launch_date: '2025-03-01'

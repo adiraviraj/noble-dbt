@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: stg_usdn_daily_mints
+    description: Daily USDN minted amounts from MTokenReceived events
+    columns:
+      - name: date
+        description: Date of minting activity (UTC)
+        tests:
+          - not_null
+      - name: usdn_minted
+        description: Total USDN minted on this date (in USDN units, not micro)
+
+  - name: stg_usdn_daily_burns
+    description: Daily USDN burned amounts from USDNTokenSent events
+    columns:
+      - name: date
+        description: Date of burn activity (UTC)
+        tests:
+          - not_null
+      - name: usdn_burned
+        description: Total USDN burned on this date (in USDN units, not micro)
+
+  - name: stg_usdn_daily_yields
+    description: Daily USDN yield accrued from IndexUpdated events
+    columns:
+      - name: date
+        description: Date of yield accrual (UTC)
+        tests:
+          - not_null
+      - name: usdn_yield
+        description: Total USDN yield accrued on this date (in USDN units, not micro)
